@@ -1,17 +1,14 @@
 class Solution {
     public int fib(int n) {
-        // By Using the dynamic programming
-        int [] memo= new int[n+1];
-        for(int i = 0;i<=n;i++){
-            memo[i] = -1;
+    
+        if (n==1 || n==0) return n;
+
+            int [] dp_array = new int [n+1];
+            dp_array[0] = 0;
+            dp_array[1] = 1;
+        for(int i= 2;i<=n;i++){
+            dp_array[i] = dp_array[i-1]+dp_array[i-2];
         }
-        return fibhelper(n,memo);
-        
+        return dp_array[n];
     }
-    private int fibhelper(int n, int[] memo){
-        if (n<=1) return n;
-        if (memo[n] != -1) return memo[n];
-        memo[n] = fibhelper(n-1,memo) + fibhelper(n-2,memo);
-        return memo[n];
-     }
 }
